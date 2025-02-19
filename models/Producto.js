@@ -5,9 +5,9 @@ const Producto = {
         return new Promise((resolve, reject) => {
             db.query(
                 `SELECT p.*, c.nombre_categoria, pr.nombre_empresa 
-                 FROM productos p 
-                 JOIN categorias c ON p.categoria = c.id 
-                 JOIN proveedores pr ON p.proveedor = pr.id`, 
+                    FROM productos p 
+                    JOIN categorias c ON p.categoria = c.id 
+                    JOIN proveedores pr ON p.proveedor = pr.id`, 
                 (err, results) => {
                     if (err) reject(err);
                     else resolve(results);
@@ -20,10 +20,10 @@ const Producto = {
         return new Promise((resolve, reject) => {
             db.query(
                 `SELECT p.*, c.nombre_categoria, pr.nombre_empresa 
-                 FROM productos p 
-                 JOIN categorias c ON p.categoria = c.id 
-                 JOIN proveedores pr ON p.proveedor = pr.id 
-                 WHERE p.id = ?`, 
+                    FROM productos p 
+                    JOIN categorias c ON p.categoria = c.id 
+                    JOIN proveedores pr ON p.proveedor = pr.id 
+                    WHERE p.id = ?`,
                 [id], (err, results) => {
                     if (err) reject(err);
                     else resolve(results);

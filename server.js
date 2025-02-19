@@ -4,9 +4,11 @@ const cors = require("cors");
 const db = require("./config/db");
 
 const authRoutes = require("./routes/authRoutes");
+const clienteAuthRoutes = require("./routes/clienteAuthRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const proveedorRoutes = require("./routes/proveedorRoutes");
 const productoRoutes = require("./routes/productoRoutes");
+const pedidoRoutes = require("./routes/pedidoRoutes");
 
 const app = express();
 
@@ -15,9 +17,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", authRoutes);
+app.use("/clientes/auth", clienteAuthRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/proveedores", proveedorRoutes);
 app.use("/productos", productoRoutes);
+app.use("/pedidos", pedidoRoutes);
 
 app.use((err, req, res, next) => {
     console.error("Error en el servidor:", err);
