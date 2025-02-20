@@ -45,9 +45,13 @@ exports.deletePedido = (req, res) => {
 exports.cancelPedido = (req, res) => {
     const { id } = req.params;
 
-    Pedido.cancelPedido(id, (err, result) => {
-        if (err) return res.status(500).json({ error: "Error al cancelar el pedido" });
+    Pedido.updateStatus(id, "cancelado", (err, result) => {
+        if (err) return res.status(500).json({ error: "Error al actualizar el pedido a cancelado" });
 
-        res.json({ message: "Pedido cancelado y registrado en productos_pedido" });
+        Pedido.cancelPedido(id, (err, result) => {
+            if (err) return res.status(500).json({ error: "Error al registrar la cancelación" });
+
+            res.json({ message: "Pedido cancelado correctamente y registrado en productos_pedido" });
+        });
     });
 };
